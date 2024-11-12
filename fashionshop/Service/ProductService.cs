@@ -22,11 +22,7 @@ namespace fashionshop.Service
 
         public bool ProductExists(string barCode)
         {
-            if (productRepository.findByBarcode(barCode) != null)
-            {
-                return true;
-            }
-            return false;
+            return productRepository.findByBarcode(barCode) != null;
         }
 
         public void SaveProduct(Product item)
