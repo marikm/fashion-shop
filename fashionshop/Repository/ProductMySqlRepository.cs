@@ -1,6 +1,8 @@
 ﻿using fashionshop.Model.Product;
 using System;
 using System.Collections.Generic;
+using System.Collections;
+
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -52,6 +54,8 @@ namespace fashionshop.Repository
         {
             try
             {
+                Product product = null;
+
                 using (MySqlConnection conection = con.getConnection())
                 {
                     var query = "SELECT * FROM produtos WHERE codBarras = @barcode";
@@ -59,21 +63,25 @@ namespace fashionshop.Repository
                     {
                         cmd.Parameters.AddWithValue("@barcode", barcode);
                         MySqlDataReader item = cmd.ExecuteReader();
-                        item.Read();
 
-                        string description = item["descricao"].ToString();
-                        string category = item["categoria"].ToString();
-                        string brand = item["marca"].ToString();
-                        decimal price = Convert.ToDecimal(item["preco"]);
-                        Product obj = new Product(barcode, description, category, brand, price);
+                        if(item.Read())
+                        {
+                            string description = item["descricao"].ToString();
+                            string category = item["categoria"].ToString();
+                            string brand = item["marca"].ToString();
+                            decimal price = Convert.ToDecimal(item["preco"]);
+                            
+                            product = new Product(barcode, description, category, brand, price);
 
-                        return obj;
+                        }
+                        return product;
                     }
+                    
                 }
             }
             catch (Exception ex)
             {
-                throw new Exception("Failed to find item in database: " + ex.Message);
+                throw new Exception("Failed to find in Read() method: " + ex.Message);
             }
         }
 
@@ -81,38 +89,92 @@ namespace fashionshop.Repository
         //{
 
         //}
-        //public void update(int productId)
-        //{
+        public void update(string productId, Product product)
+        {
+            try
+            {
+                using (MySqlConnection conection = con.getConnection())
+                { 
+                    var query = @"UPDATE produtos 
+                                SET codBarras = @codBarras, 
+                                    descricao = @descricao, 
+                                    categoria = @categoria, 
+                                    marca = @marca, 
+                                    preco = @preco 
+                                WHERE id = @id";
 
-        //}
+                    using (MySqlCommand cmd = new MySqlCommand(query, conection))
+                    {
+                        cmd.Parameters.AddWithValue("@codBarras", product.BarCode);
+                        cmd.Parameters.AddWithValue("@descricao", product.Description);
+                        cmd.Parameters.AddWithValue("@categoria", product.Category);
+                        cmd.Parameters.AddWithValue("@marca", product.Brand);
+                        cmd.Parameters.AddWithValue("@preco", product.Price);
+                        cmd.Parameters.AddWithValue("@id", Convert.ToInt16(productId));
+
+
+                        cmd.ExecuteNonQuery();
+
+                    }
+                    con.CloseConnection(conection);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Failed to update product to the database: " + ex.Message);
+            }
+        }
         //public Product findOne(string productId)
         //{
 
         //}
 
-        //public List<Product> findAll()
-        //{
+        public ArrayList findAll()
+        {
+            try
+            {
+                ArrayList rows = new ArrayList();
+                string[] register;
 
-        //}
+                using (MySqlConnection conection = con.getConnection())
+                {
+                    var query = "SELECT * FROM produtos";
+                    using (MySqlCommand cmd = new MySqlCommand(query, conection))
+                    {
+                        
+                        MySqlDataReader item = cmd.ExecuteReader();
+
+                        while (item.Read())
+                        {
+                            register = new string[]
+                            {
+                                item["id"].ToString(),
+                                item["codBarras"].ToString(),
+                                item["descricao"].ToString(),
+                                item["categoria"].ToString(),
+                                item["marca"].ToString(),
+                                item["preco"].ToString(),
+                                item["estoque"].ToString()
+                            };
+
+                            rows.Add(register);
+
+                        }
+                        return rows;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Failed to find in Read() method: " + ex.Message);
+            }
+        }
         //public List<Product> findByDescription(string description)
         //{
 
         //}
 
 
-        public override bool Equals(object? obj)
-        {
-            return base.Equals(obj);
-        }
-
-        public override int GetHashCode()
-        {
-            return base.GetHashCode();
-        }
-
-        public override string? ToString()
-        {
-            return base.ToString();
-        }
+      
     }
 }

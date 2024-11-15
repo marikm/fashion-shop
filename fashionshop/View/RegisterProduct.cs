@@ -42,10 +42,19 @@ namespace fashionshop.View
             {
                 Product item = new(barCode, description, category, brand, price);
                 productController.RegisterItem(item);
+                MessageBox.Show(
+                    "Product saved in database", 
+                    "Information",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(
+                    ex.Message,
+                    "Exception",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
             }
         }
     }

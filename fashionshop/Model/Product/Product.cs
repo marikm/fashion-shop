@@ -17,7 +17,7 @@ namespace fashionshop.Model.Product
 
         public Product(string barCode, string description, string category, string brand, decimal price)
         {
-            if (string.IsNullOrWhiteSpace(barCode)){ throw new Exception("BarCode is null or empty.");}
+            if (string.IsNullOrWhiteSpace(barCode)) throw new Exception("BarCode is null or empty.");
             if (string.IsNullOrWhiteSpace(description)) throw new Exception("Description is null or empty");
             if (string.IsNullOrWhiteSpace(category)) throw new Exception("Category is null or empty");
             if (string.IsNullOrWhiteSpace(brand)) throw new Exception("Brand is null or empty");
@@ -40,7 +40,7 @@ namespace fashionshop.Model.Product
 
         public decimal Price => price;
 
-
+       
     }
 
 

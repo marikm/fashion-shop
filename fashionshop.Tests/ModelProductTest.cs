@@ -1,6 +1,10 @@
 
 
 using fashionshop.Model.Product;
+using fashionshop.Repository;
+using fashionshop.Database;
+using System.Collections;
+
 
 namespace fashionshop.Tests
 {
@@ -25,5 +29,7 @@ namespace fashionshop.Tests
             Assert.Equal("Price value invalid: zero or negative", ePrice.Message);
 
         }
-    }
+
+     
+}
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -28,6 +29,23 @@ namespace fashionshop.Controller
             {
                 throw new Exception(ex.Message);
             }
+        }
+
+        public void UpdateItem(string idProduct, Product product)
+        {
+            try
+            {
+                productService.EditProduct(idProduct,product);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public ArrayList listAllProducts()
+        {
+            return productService.GetAllProducts();
         }
     }
 }

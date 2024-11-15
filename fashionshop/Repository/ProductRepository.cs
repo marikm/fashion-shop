@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,10 +13,10 @@ namespace fashionshop.Repository
     {
         void save(Product product);
         //void inactivate(int productId);
-        //void update(int productId);
+        void update(string productId, Product product);
         //Product findOne(string  productId);
         Product findByBarcode(string barcode);
-        //List<Product> findAll();
+        ArrayList findAll();
         //List<Product> findByDescription(string description);
     }
 }

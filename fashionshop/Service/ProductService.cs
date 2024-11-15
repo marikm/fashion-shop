@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,7 +23,7 @@ namespace fashionshop.Service
 
         public bool ProductExists(string barCode)
         {
-            if (productRepository.findByBarcode(barCode) != null)
+            if (this.productRepository.findByBarcode(barCode) != null)
             {
                 return true;
             }
@@ -31,11 +32,26 @@ namespace fashionshop.Service
 
         public void SaveProduct(Product item)
         {
-            if(!this.ProductExists(item.BarCode))
+            if(ProductExists(item.BarCode))
             {
-                productRepository.save(item);
+                throw new Exception("Barcode informed already registered in database");
             }
-            throw new Exception("Barcode informed already registered in database");
+            
+            productRepository.save(item);
         }
+
+        public ArrayList GetAllProducts()
+        {
+            return this.productRepository.findAll();
+
+        }
+
+        public void EditProduct(string idProduct, Product item)
+        {
+            
+
+            this.productRepository.update(idProduct, item);
+        }
+
     }
 }
