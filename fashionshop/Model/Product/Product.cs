@@ -10,10 +10,11 @@ namespace fashionshop.Model.Product
     public class Product
     {
         private readonly string barCode;
-        private readonly String description;
-        private readonly String category;
-        private readonly String brand;
+        private readonly string description;
+        private readonly string category;
+        private readonly string brand;
         private readonly decimal price;
+        
 
         public Product(string barCode, string description, string category, string brand, decimal price)
         {
@@ -27,7 +28,6 @@ namespace fashionshop.Model.Product
             this.category = category;
             this.brand = brand;
             this.price = price;
-            
         }
 
         public string BarCode => barCode;

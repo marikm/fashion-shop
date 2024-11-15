@@ -5,7 +5,12 @@ VisualStudioVersion = 17.11.35327.3
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "fashionshop", "fashionshop\fashionshop.csproj", "{156B5C79-2616-42F9-B68B-B61EE7657914}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "fashionshop.Tests", "fashionshop.Tests\fashionshop.Tests.csproj", "{DA86BD97-98D0-4220-AFC6-D0B5CF726F70}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "fashionshop.Tests", "fashionshop.Tests\fashionshop.Tests.csproj", "{DA86BD97-98D0-4220-AFC6-D0B5CF726F70}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Itens de Solução", "Itens de Solução", "{0C41F880-9F1D-4274-BC4D-FC6A2A1233A0}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
