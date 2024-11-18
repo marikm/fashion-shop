@@ -69,15 +69,22 @@ namespace fashionshop.View
                     }
                     else
                     {
+                        
                         MessageBox.Show("Produto inativo", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     }
+                    txtBarcode.Text = "";
                 }
 
                 else
                 {
-                    MessageBox.Show("Favor informar código de barras", "Atenção", MessageBoxButtons.OK);
+                    ProductsSale form = new ProductsSale();
+                    form.ShowDialog();
+                    if (form.DialogResult == DialogResult.OK) 
+                    {
+                        txtBarcode.Text = form.getBarcode();
+                    }
+                    //MessageBox.Show("Favor informar código de barras", "Atenção", MessageBoxButtons.OK);
                 }
-
             }
         }
 

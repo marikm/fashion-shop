@@ -98,7 +98,7 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("MS Reference Sans Serif", 9F);
-            label2.Location = new Point(155, 144);
+            label2.Location = new Point(135, 144);
             label2.Name = "label2";
             label2.Size = new Size(81, 16);
             label2.TabIndex = 13;
@@ -107,7 +107,7 @@
             // txtBarcode
             // 
             txtBarcode.Font = new Font("Segoe UI", 12F);
-            txtBarcode.Location = new Point(155, 163);
+            txtBarcode.Location = new Point(135, 163);
             txtBarcode.Name = "txtBarcode";
             txtBarcode.Size = new Size(156, 29);
             txtBarcode.TabIndex = 1;
