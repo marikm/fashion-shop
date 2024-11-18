@@ -1,6 +1,7 @@
 ﻿using fashionshop.Controller;
 using fashionshop.Service;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -139,26 +140,35 @@ namespace fashionshop.View
 
         private void btnConfirm_Click(object sender, EventArgs e)
         {
-            string[] order;
+            ArrayList order = new ArrayList();
+            string[] item;
 
             foreach (DataGridViewRow row in dgvSale.Rows)
             {
                 if (row.IsNewRow) continue; // Ignorar a última linha vazia do DataGridView, se houver
 
-                order = new string[]
+                item = new string[]
                 {
                     row.Cells[0].Value.ToString(), // cod.Barras
                     row.Cells[1].Value.ToString(), // descricao
                     row.Cells[2].Value.ToString(), // qnt
                     row.Cells[3].Value.ToString(), // valor un
+                    row.Cells[4].Value.ToString(), // valor total item
                 };
 
-                string barcode = order[0];
-                int soldQuantity = Convert.ToInt32(order[2])*-1; // Quantidade vendida
-
-                
+                string barcode = item[0];
+                int soldQuantity = Convert.ToInt32(item[2])*-1; // Quantidade vendida
                 this.productController.setStock(barcode, soldQuantity);
+                order.Add(item);
+  
             }
+            this.productController.setOrder(txtTotalValue.Text);
+
+            foreach (string[] row in order) { 
+            
+                this.productController.setOrderItem(row);
+            }
+                
 
             MessageBox.Show("Compra realizada com sucesso!", 
                 "Informação",

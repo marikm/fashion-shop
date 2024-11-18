@@ -101,5 +101,20 @@ namespace fashionshop.Service
         {
             this.productRepository.updateStock(barcode, qnt);
         }
+        public void setOrder(string totalValue)
+        {
+            this.productRepository.setOrder(totalValue);
+        }
+
+        public ArrayList ListOrders()
+        {
+            return this.productRepository.ListOrders();
+        }
+
+        public void setOrderItem(string[] item)
+        {
+            this.productRepository.setOrderItem(item);
+        }
+
     }
 }

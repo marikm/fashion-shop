@@ -222,5 +222,13 @@ namespace fashionshop.View
             this.Show();
             btnRefresh_Click(sender, e);
         }
+
+        private void btnOrders_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Orders form = new Orders();
+            form.ShowDialog();
+            this.Show();
+        }
     }
 }

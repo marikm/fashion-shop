@@ -381,6 +381,106 @@ namespace fashionshop.Repository
             {
                 throw new Exception("Failed to update product to the database: " + ex.Message);
             }
+
+        }
+        public void setOrder(string totalValue)
+        {
+            try
+            {
+                using (MySqlConnection conection = con.getConnection())
+                {
+                    var query = "INSERT INTO pedido (valorTotal) " +
+                        "VALUES (@valorTotal)";
+                    using (MySqlCommand cmd = new MySqlCommand(query, conection))
+                    {
+                        cmd.Parameters.AddWithValue("valorTotal", totalValue );
+                        
+                        cmd.ExecuteNonQuery();
+                    }
+
+                    con.CloseConnection(conection);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Failed to save product to the database");
+            }
+        }
+        public void setOrderItem(string[] item)
+        {
+            try
+            {
+                string idOrder;
+                using (MySqlConnection conection = con.getConnection())
+                {
+                    string selectIdQuery = "SELECT MAX(id) FROM pedido";
+                    using (MySqlCommand cmd = new MySqlCommand(selectIdQuery, conection))
+                    {
+                        idOrder = cmd.ExecuteScalar().ToString();
+
+                        cmd.ExecuteNonQuery();
+                    }
+
+                    var query = "INSERT INTO pedidoitens (npedido, codBarras, descricao, quantidade, valorUn, itemTotal) " +
+                        "VALUES (@npedido, @codBarras, @descricao, @quantidade, @valorUn, @itemTotal)";
+                    using (MySqlCommand cmd = new MySqlCommand(query, conection))
+                    {
+                        cmd.Parameters.AddWithValue("npedido", idOrder);
+                        cmd.Parameters.AddWithValue("codBarras", item[0]);
+                        cmd.Parameters.AddWithValue("descricao", item[1]);
+                        cmd.Parameters.AddWithValue("quantidade", item[2]);
+                        cmd.Parameters.AddWithValue("valorUn", item[3]);
+                        cmd.Parameters.AddWithValue("itemTotal", item[4]);
+
+                        cmd.ExecuteNonQuery();
+                    }
+
+                    con.CloseConnection(conection);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Failed to save product to the database");
+            }
+        }
+
+        public ArrayList ListOrders()
+        {
+            try
+            {
+                ArrayList rows = new ArrayList();
+                string[] register;
+
+                using (MySqlConnection conection = con.getConnection())
+                {
+                    var query = "SELECT * FROM pedido";
+                    using (MySqlCommand cmd = new MySqlCommand(query, conection))
+                    {
+
+                        MySqlDataReader item = cmd.ExecuteReader();
+                        
+                        while (item.Read())
+                        {
+                            register = new string[]
+                            {
+                                item["id"].ToString(),
+                                item["valorTotal"].ToString()
+                                
+                            };
+                            rows.Add(register);
+                        }
+
+                        
+                        return rows;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Failed to find in Read() method: " + ex.Message);
+            }
         }
 
     }

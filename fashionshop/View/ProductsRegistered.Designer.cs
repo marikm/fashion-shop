@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             label1 = new Label();
-            label2 = new Label();
             btnRegister = new Button();
             btnEdit = new Button();
             btnDisable = new Button();
@@ -41,6 +40,8 @@
             txtSearch = new TextBox();
             label3 = new Label();
             dgvProducts = new DataGridView();
+            btnOrders = new Button();
+            label2 = new Label();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvProducts).BeginInit();
             SuspendLayout();
@@ -57,20 +58,6 @@
             label1.TabIndex = 8;
             label1.Text = "Produtos Cadastrados";
             label1.TextAlign = ContentAlignment.MiddleCenter;
-            // 
-            // label2
-            // 
-            label2.BackColor = Color.LightCoral;
-            label2.Dock = DockStyle.Bottom;
-            label2.Font = new Font("Segoe UI", 15F);
-            label2.ForeColor = SystemColors.ButtonHighlight;
-            label2.Location = new Point(0, 535);
-            label2.Name = "label2";
-            label2.Padding = new Padding(20, 0, 0, 0);
-            label2.Size = new Size(947, 48);
-            label2.TabIndex = 12;
-            label2.Text = "Pesquisa";
-            label2.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // btnRegister
             // 
@@ -137,6 +124,7 @@
             panel1.BackColor = Color.LightCoral;
             panel1.BackgroundImageLayout = ImageLayout.None;
             panel1.BorderStyle = BorderStyle.FixedSingle;
+            panel1.Controls.Add(btnOrders);
             panel1.Controls.Add(btnSale);
             panel1.Controls.Add(cmbActive);
             panel1.Controls.Add(label4);
@@ -146,7 +134,7 @@
             panel1.Controls.Add(btnRegister);
             panel1.Location = new Point(0, 73);
             panel1.Name = "panel1";
-            panel1.Size = new Size(130, 469);
+            panel1.Size = new Size(130, 514);
             panel1.TabIndex = 11;
             // 
             // btnSale
@@ -156,7 +144,7 @@
             btnSale.FlatStyle = FlatStyle.Flat;
             btnSale.Font = new Font("Segoe UI", 15F);
             btnSale.ForeColor = SystemColors.ButtonHighlight;
-            btnSale.Location = new Point(3, 386);
+            btnSale.Location = new Point(3, 374);
             btnSale.Name = "btnSale";
             btnSale.Size = new Size(122, 60);
             btnSale.TabIndex = 7;
@@ -188,7 +176,7 @@
             // 
             // txtSearch
             // 
-            txtSearch.Location = new Point(127, 548);
+            txtSearch.Location = new Point(127, 600);
             txtSearch.Name = "txtSearch";
             txtSearch.Size = new Size(808, 23);
             txtSearch.TabIndex = 5;
@@ -200,7 +188,7 @@
             label3.Dock = DockStyle.Right;
             label3.Location = new Point(931, 77);
             label3.Name = "label3";
-            label3.Size = new Size(16, 458);
+            label3.Size = new Size(16, 510);
             label3.TabIndex = 13;
             // 
             // dgvProducts
@@ -215,14 +203,43 @@
             dgvProducts.Name = "dgvProducts";
             dgvProducts.ScrollBars = ScrollBars.Vertical;
             dgvProducts.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvProducts.Size = new Size(808, 461);
+            dgvProducts.Size = new Size(808, 510);
             dgvProducts.TabIndex = 14;
+            // 
+            // btnOrders
+            // 
+            btnOrders.BackColor = Color.Transparent;
+            btnOrders.FlatAppearance.BorderColor = Color.White;
+            btnOrders.FlatStyle = FlatStyle.Flat;
+            btnOrders.Font = new Font("Segoe UI", 13F);
+            btnOrders.ForeColor = SystemColors.ButtonHighlight;
+            btnOrders.Location = new Point(3, 455);
+            btnOrders.Name = "btnOrders";
+            btnOrders.Size = new Size(122, 42);
+            btnOrders.TabIndex = 8;
+            btnOrders.Text = "Ver Pedidos";
+            btnOrders.UseVisualStyleBackColor = false;
+            btnOrders.Click += btnOrders_Click;
+            // 
+            // label2
+            // 
+            label2.BackColor = Color.LightCoral;
+            label2.Dock = DockStyle.Bottom;
+            label2.Font = new Font("Segoe UI", 15F);
+            label2.ForeColor = SystemColors.ButtonHighlight;
+            label2.Location = new Point(0, 587);
+            label2.Name = "label2";
+            label2.Padding = new Padding(20, 0, 0, 0);
+            label2.Size = new Size(947, 48);
+            label2.TabIndex = 12;
+            label2.Text = "Pesquisa";
+            label2.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // ProductsRegistered
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(947, 583);
+            ClientSize = new Size(947, 635);
             Controls.Add(dgvProducts);
             Controls.Add(label3);
             Controls.Add(txtSearch);
@@ -242,7 +259,6 @@
 
         #endregion
         private Label label1;
-        private Label label2;
         private Button btnRegister;
         private Button btnEdit;
         private Button btnDisable;
@@ -254,5 +270,7 @@
         private Label label4;
         private ComboBox cmbActive;
         private Button btnSale;
+        private Button btnOrders;
+        private Label label2;
     }
 }

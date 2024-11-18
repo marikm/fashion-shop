@@ -93,5 +93,18 @@ namespace fashionshop.Controller
         {
             this.productService.setStock(barcode, qnt);
         }
+
+        public void setOrder(string totalValue)
+        {
+            this.productService.setOrder(totalValue);
+        }
+        public ArrayList ListOrders()
+        {
+            return this.productService.ListOrders();
+        }
+        public void setOrderItem(string[] item)
+        {
+            this.productService.setOrderItem(item);
+        }
     }
 }

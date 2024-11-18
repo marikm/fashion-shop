@@ -21,5 +21,9 @@ namespace fashionshop.Repository
         ArrayList findAllActiveProducts();
         ArrayList findByDescription(string description, int status);
         ArrayList findAllByDescription(string description);
+        void setOrder(string totalValue);
+        void setOrderItem(string[] item);
+        ArrayList ListOrders();
+
     }
 }
