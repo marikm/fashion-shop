@@ -214,5 +214,13 @@ namespace fashionshop.View
 
         }
 
+        private void btnSale_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            PointOfSale form = new PointOfSale();
+            form.ShowDialog();
+            this.Show();
+            btnRefresh_Click(sender, e);
+        }
     }
 }

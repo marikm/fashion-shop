@@ -131,5 +131,46 @@ namespace fashionshop.View
 
             }
         }
+
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void btnConfirm_Click(object sender, EventArgs e)
+        {
+            string[] order;
+
+            foreach (DataGridViewRow row in dgvSale.Rows)
+            {
+                if (row.IsNewRow) continue; // Ignorar a última linha vazia do DataGridView, se houver
+
+                order = new string[]
+                {
+                    row.Cells[0].Value.ToString(), // cod.Barras
+                    row.Cells[1].Value.ToString(), // descricao
+                    row.Cells[2].Value.ToString(), // qnt
+                    row.Cells[3].Value.ToString(), // valor un
+                };
+
+                string barcode = order[0];
+                int soldQuantity = Convert.ToInt32(order[2])*-1; // Quantidade vendida
+
+                
+                this.productController.setStock(barcode, soldQuantity);
+            }
+
+            MessageBox.Show("Compra realizada com sucesso!", 
+                "Informação",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Information);
+
+            // Limpa o DataGridView após processar todas as vendas
+            dgvSale.Rows.Clear();
+            txtQnt.Text = "1";
+            txtBarcode.Text = "";
+            txtDescription.Text = "";
+            txtTotalValue.Text = "0";
+        }
     }
 }

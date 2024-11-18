@@ -89,5 +89,9 @@ namespace fashionshop.Controller
         {
             return productService.GetOneByBarcode(barcode);
         }
+        public void setStock(string barcode, int qnt)
+        {
+            this.productService.setStock(barcode, qnt);
+        }
     }
 }

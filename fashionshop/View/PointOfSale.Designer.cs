@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             label1 = new Label();
-            btnRegister = new Button();
+            btnBack = new Button();
             txtDescription = new TextBox();
             label3 = new Label();
             label2 = new Label();
@@ -60,19 +60,20 @@
             label1.Text = "CAIXA";
             label1.TextAlign = ContentAlignment.MiddleCenter;
             // 
-            // btnRegister
+            // btnBack
             // 
-            btnRegister.BackColor = Color.Silver;
-            btnRegister.FlatAppearance.BorderColor = Color.White;
-            btnRegister.FlatStyle = FlatStyle.Flat;
-            btnRegister.Font = new Font("Segoe UI", 11F);
-            btnRegister.ForeColor = SystemColors.ActiveCaptionText;
-            btnRegister.Location = new Point(12, 102);
-            btnRegister.Name = "btnRegister";
-            btnRegister.Size = new Size(91, 31);
-            btnRegister.TabIndex = 10;
-            btnRegister.Text = "<< Voltar";
-            btnRegister.UseVisualStyleBackColor = false;
+            btnBack.BackColor = Color.Silver;
+            btnBack.FlatAppearance.BorderColor = Color.White;
+            btnBack.FlatStyle = FlatStyle.Flat;
+            btnBack.Font = new Font("Segoe UI", 11F);
+            btnBack.ForeColor = SystemColors.ActiveCaptionText;
+            btnBack.Location = new Point(12, 102);
+            btnBack.Name = "btnBack";
+            btnBack.Size = new Size(91, 31);
+            btnBack.TabIndex = 10;
+            btnBack.Text = "<< Voltar";
+            btnBack.UseVisualStyleBackColor = false;
+            btnBack.Click += btnBack_Click;
             // 
             // txtDescription
             // 
@@ -213,6 +214,7 @@
             btnConfirm.TabIndex = 28;
             btnConfirm.Text = "Finalizar";
             btnConfirm.UseVisualStyleBackColor = false;
+            btnConfirm.Click += btnConfirm_Click;
             // 
             // PointOfSale
             // 
@@ -233,9 +235,10 @@
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(txtBarcode);
-            Controls.Add(btnRegister);
+            Controls.Add(btnBack);
             Controls.Add(label1);
             Name = "PointOfSale";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "PointOfSale";
             ((System.ComponentModel.ISupportInitialize)dgvSale).EndInit();
             ResumeLayout(false);
@@ -245,7 +248,7 @@
         #endregion
 
         private Label label1;
-        private Button btnRegister;
+        private Button btnBack;
         private TextBox txtDescription;
         private Label label3;
         private Label label2;

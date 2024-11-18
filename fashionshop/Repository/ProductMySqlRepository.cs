@@ -364,7 +364,7 @@ namespace fashionshop.Repository
 
                     var query = @"UPDATE produtos 
                                 SET estoque = @estoque 
-                                WHERE codBarras = @barcode";
+                                WHERE codBarras = @codBarras";
 
                     using (MySqlCommand cmd = new MySqlCommand(query, conection))
                     {

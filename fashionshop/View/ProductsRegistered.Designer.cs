@@ -35,6 +35,7 @@
             btnDisable = new Button();
             btnRefresh = new Button();
             panel1 = new Panel();
+            btnSale = new Button();
             cmbActive = new ComboBox();
             label4 = new Label();
             txtSearch = new TextBox();
@@ -136,6 +137,7 @@
             panel1.BackColor = Color.LightCoral;
             panel1.BackgroundImageLayout = ImageLayout.None;
             panel1.BorderStyle = BorderStyle.FixedSingle;
+            panel1.Controls.Add(btnSale);
             panel1.Controls.Add(cmbActive);
             panel1.Controls.Add(label4);
             panel1.Controls.Add(btnRefresh);
@@ -146,6 +148,21 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(130, 469);
             panel1.TabIndex = 11;
+            // 
+            // btnSale
+            // 
+            btnSale.BackColor = Color.Transparent;
+            btnSale.FlatAppearance.BorderColor = Color.White;
+            btnSale.FlatStyle = FlatStyle.Flat;
+            btnSale.Font = new Font("Segoe UI", 15F);
+            btnSale.ForeColor = SystemColors.ButtonHighlight;
+            btnSale.Location = new Point(3, 386);
+            btnSale.Name = "btnSale";
+            btnSale.Size = new Size(122, 60);
+            btnSale.TabIndex = 7;
+            btnSale.Text = "Vender";
+            btnSale.UseVisualStyleBackColor = false;
+            btnSale.Click += btnSale_Click;
             // 
             // cmbActive
             // 
@@ -213,6 +230,7 @@
             Controls.Add(label1);
             Controls.Add(panel1);
             Name = "ProductsRegistered";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "ProductsRegistered";
             Load += ProductsRegistered_Load;
             panel1.ResumeLayout(false);
@@ -235,5 +253,6 @@
         private DataGridView dgvProducts;
         private Label label4;
         private ComboBox cmbActive;
+        private Button btnSale;
     }
 }

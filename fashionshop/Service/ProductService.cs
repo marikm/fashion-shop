@@ -97,5 +97,9 @@ namespace fashionshop.Service
             return this.productRepository.findOneByBarcode(barcode);
         }
 
+        public void setStock(string barcode, int qnt)
+        {
+            this.productRepository.updateStock(barcode, qnt);
+        }
     }
 }
