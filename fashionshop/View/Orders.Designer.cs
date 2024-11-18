@@ -75,6 +75,7 @@
             btnDetails.TabIndex = 10;
             btnDetails.Text = "detalhes";
             btnDetails.UseVisualStyleBackColor = true;
+            btnDetails.Click += btnDetails_Click;
             // 
             // btnBack
             // 

@@ -30,7 +30,7 @@ namespace fashionshop.View
             dgvOrders.Rows.Clear();
 
             dgvOrders.ColumnCount = 2;
-            dgvOrders.Columns[0].Name = "id";
+            dgvOrders.Columns[0].Name = "n. pedido";
             dgvOrders.Columns[1].Name = "valor total";
 
             foreach (string[] item in list)
@@ -42,6 +42,18 @@ namespace fashionshop.View
         private void btnBack_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void btnDetails_Click(object sender, EventArgs e)
+        {
+            DataGridViewRow selectedLine = dgvOrders.SelectedRows[0];
+            string idPedido = selectedLine.Cells[0].Value.ToString();
+            OrderDetails details = new OrderDetails();
+            details.LoadOrderDetails(idPedido);
+            this.Hide();
+            details.ShowDialog();
+            this.Show();
+
         }
     }
 

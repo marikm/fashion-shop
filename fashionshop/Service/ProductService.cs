@@ -116,5 +116,10 @@ namespace fashionshop.Service
             this.productRepository.setOrderItem(item);
         }
 
+        public ArrayList ListOrderDetails(string npedido)
+        {
+            return this.productRepository.ListOrderDetails(npedido);
+        }
+
     }
 }

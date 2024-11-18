@@ -483,5 +483,48 @@ namespace fashionshop.Repository
             }
         }
 
+        public ArrayList ListOrderDetails(string npedido)
+        {
+            try
+            {
+                ArrayList order = new ArrayList();
+                string[] register;
+
+                using (MySqlConnection conection = con.getConnection())
+                {
+                    var query = "SELECT * FROM pedidoitens WHERE npedido=@npedido";
+                    using (MySqlCommand cmd = new MySqlCommand(query, conection))
+                    {
+                        cmd.Parameters.AddWithValue("npedido", npedido);
+                        MySqlDataReader item = cmd.ExecuteReader();
+
+                        while (item.Read())
+                        {
+                            register = new string[]
+                            {
+                                item["id"].ToString(),
+                                item["npedido"].ToString(),
+                                item["codBarras"].ToString(),
+                                item["descricao"].ToString(),
+                                item["quantidade"].ToString(),
+                                item["valorUn"].ToString(),
+                                item["itemTotal"].ToString()
+
+                            };
+                            order.Add(register);
+                        }
+
+
+                    }
+                }
+                return order;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Failed to find in Read() method: " + ex.Message);
+            }
+        }
+
+
     }
 }

@@ -25,5 +25,7 @@ namespace fashionshop.Repository
         void setOrderItem(string[] item);
         ArrayList ListOrders();
 
+        ArrayList ListOrderDetails(string npedido);
+
     }
 }

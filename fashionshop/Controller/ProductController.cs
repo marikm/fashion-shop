@@ -106,5 +106,10 @@ namespace fashionshop.Controller
         {
             this.productService.setOrderItem(item);
         }
+
+        public ArrayList ListOrderDetails(string npedido)
+        {
+            return this.productService.ListOrderDetails(npedido);
+        }
     }
 }
