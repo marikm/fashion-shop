@@ -35,14 +35,14 @@ namespace fashionshop.Service
             return false;
         }
 
-        public void SaveProduct(Product item)
+        public void SaveProduct(Product item, string stock)
         {
             if (ProductExists(item.BarCode))
             {
                 throw new Exception("Código de barras informado já está cadastrado na base de dados");
             }
 
-            productRepository.save(item);
+            productRepository.save(item, stock);
         }
 
         public ArrayList GetAllProducts()

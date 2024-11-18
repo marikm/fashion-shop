@@ -57,7 +57,7 @@
             label1.Name = "label1";
             label1.Size = new Size(800, 77);
             label1.TabIndex = 9;
-            label1.Text = "CAIXA";
+            label1.Text = "VENDAS";
             label1.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // btnBack

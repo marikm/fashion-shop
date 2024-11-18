@@ -11,7 +11,7 @@ namespace fashionshop.Repository
 {
     public interface ProductRepository
     {
-        void save(Product product);
+        void save(Product product, string stock);
         void updateStock(string barcode, int qnt);
         public void ChangeStatus(string productId, int status);
         void update(string productId, Product product);

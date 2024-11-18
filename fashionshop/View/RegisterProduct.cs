@@ -25,6 +25,7 @@ namespace fashionshop.View
             this.productService = new ProductService();
             this.productController = new ProductController(this.productService);
             InitializeComponent();
+            txtStock.Text = "0";
         }
 
         private void btnRegister_Click(object sender, EventArgs e)
@@ -33,6 +34,7 @@ namespace fashionshop.View
             string description = txtDescription.Text;
             string category = cmbCategory.Text;
             string brand = cmbBrand.Text;
+            string initialStock = txtStock.Text;
             if (string.IsNullOrEmpty(txtPrice.Text))
             {
                 txtPrice.Text = "0";
@@ -41,7 +43,7 @@ namespace fashionshop.View
             try
             {
                 Product item = new(barCode, description, category, brand, price);
-                productController.RegisterItem(item);
+                productController.RegisterItem(item, initialStock);
                 MessageBox.Show(
                     "Produto Salvo no banco de dados",
                     "Information",

@@ -42,6 +42,8 @@
             label3 = new Label();
             label2 = new Label();
             label1 = new Label();
+            label7 = new Label();
+            txtStock = new TextBox();
             groupBox1.SuspendLayout();
             SuspendLayout();
             // 
@@ -68,6 +70,8 @@
             // 
             // groupBox1
             // 
+            groupBox1.Controls.Add(label7);
+            groupBox1.Controls.Add(txtStock);
             groupBox1.Controls.Add(button1);
             groupBox1.Controls.Add(label6);
             groupBox1.Controls.Add(btnRegister);
@@ -195,6 +199,25 @@
             label1.Text = "Cadastro de Produto";
             label1.TextAlign = ContentAlignment.MiddleCenter;
             // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Font = new Font("MS Reference Sans Serif", 9F);
+            label7.Location = new Point(19, 262);
+            label7.Name = "label7";
+            label7.Size = new Size(99, 16);
+            label7.TabIndex = 12;
+            label7.Text = "Estoque Inicial";
+            // 
+            // txtStock
+            // 
+            txtStock.BackColor = Color.White;
+            txtStock.Font = new Font("Segoe UI", 12F);
+            txtStock.Location = new Point(19, 281);
+            txtStock.Name = "txtStock";
+            txtStock.Size = new Size(159, 29);
+            txtStock.TabIndex = 11;
+            // 
             // RegisterProduct
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -226,5 +249,7 @@
         private Label label5;
         private ComboBox cmbBrand;
         private Button button1;
+        private Label label7;
+        private TextBox txtStock;
     }
 }

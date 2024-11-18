@@ -20,14 +20,14 @@ namespace fashionshop.Repository
             this.con = con;
         }
 
-        public void save(Product product)
+        public void save(Product product, string stock)
         {
             try
             {
                 using (MySqlConnection conection = con.getConnection())
                 {
-                    var query = "INSERT INTO produtos (codBarras, descricao, categoria, marca, preco) " +
-                        "VALUES (@codBarras, @descricao, @categoria, @marca, @preco)";
+                    var query = "INSERT INTO produtos (codBarras, descricao, categoria, marca, preco, estoque) " +
+                        "VALUES (@codBarras, @descricao, @categoria, @marca, @preco, @estoque)";
                     using (MySqlCommand cmd = new MySqlCommand(query, conection))
                     {
                         cmd.Parameters.AddWithValue("codBarras", product.BarCode);
@@ -35,6 +35,7 @@ namespace fashionshop.Repository
                         cmd.Parameters.AddWithValue("categoria", product.Category);
                         cmd.Parameters.AddWithValue("marca", product.Brand);
                         cmd.Parameters.AddWithValue("preco", product.Price);
+                        cmd.Parameters.AddWithValue("estoque", stock);
 
                         cmd.ExecuteNonQuery();
                     }

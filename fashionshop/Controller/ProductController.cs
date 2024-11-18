@@ -19,11 +19,11 @@ namespace fashionshop.Controller
             this.productService = productService;
         }
 
-        public void RegisterItem(Product product)
+        public void RegisterItem(Product product, string stock)
         {
             try
             {
-                productService.SaveProduct(product);
+                productService.SaveProduct(product, stock);
             }
             catch (Exception ex)
             {
