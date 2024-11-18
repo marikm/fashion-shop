@@ -34,13 +34,13 @@
             btnDisable = new Button();
             btnRefresh = new Button();
             panel1 = new Panel();
+            btnOrders = new Button();
             btnSale = new Button();
             cmbActive = new ComboBox();
             label4 = new Label();
             txtSearch = new TextBox();
             label3 = new Label();
             dgvProducts = new DataGridView();
-            btnOrders = new Button();
             label2 = new Label();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvProducts).BeginInit();
@@ -137,6 +137,21 @@
             panel1.Size = new Size(130, 514);
             panel1.TabIndex = 11;
             // 
+            // btnOrders
+            // 
+            btnOrders.BackColor = Color.Transparent;
+            btnOrders.FlatAppearance.BorderColor = Color.White;
+            btnOrders.FlatStyle = FlatStyle.Flat;
+            btnOrders.Font = new Font("Segoe UI", 13F);
+            btnOrders.ForeColor = SystemColors.ButtonHighlight;
+            btnOrders.Location = new Point(3, 455);
+            btnOrders.Name = "btnOrders";
+            btnOrders.Size = new Size(122, 42);
+            btnOrders.TabIndex = 8;
+            btnOrders.Text = "Ver Pedidos";
+            btnOrders.UseVisualStyleBackColor = false;
+            btnOrders.Click += btnOrders_Click;
+            // 
             // btnSale
             // 
             btnSale.BackColor = Color.Transparent;
@@ -201,25 +216,11 @@
             dgvProducts.Location = new Point(127, 77);
             dgvProducts.MultiSelect = false;
             dgvProducts.Name = "dgvProducts";
+            dgvProducts.RowHeadersVisible = false;
             dgvProducts.ScrollBars = ScrollBars.Vertical;
             dgvProducts.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvProducts.Size = new Size(808, 510);
             dgvProducts.TabIndex = 14;
-            // 
-            // btnOrders
-            // 
-            btnOrders.BackColor = Color.Transparent;
-            btnOrders.FlatAppearance.BorderColor = Color.White;
-            btnOrders.FlatStyle = FlatStyle.Flat;
-            btnOrders.Font = new Font("Segoe UI", 13F);
-            btnOrders.ForeColor = SystemColors.ButtonHighlight;
-            btnOrders.Location = new Point(3, 455);
-            btnOrders.Name = "btnOrders";
-            btnOrders.Size = new Size(122, 42);
-            btnOrders.TabIndex = 8;
-            btnOrders.Text = "Ver Pedidos";
-            btnOrders.UseVisualStyleBackColor = false;
-            btnOrders.Click += btnOrders_Click;
             // 
             // label2
             // 

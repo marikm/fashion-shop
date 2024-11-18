@@ -81,7 +81,13 @@ namespace fashionshop.View
 
             foreach (string[] product in rows)
             {
-                dgvProducts.Rows.Add(product);
+                int index = dgvProducts.Rows.Add(product);
+                if (cmbActive.SelectedIndex == 2 && product[7] == "False")
+                {
+                    dgvProducts.Rows[index].DefaultCellStyle.BackColor = Color.Red;
+                    dgvProducts.Rows[index].DefaultCellStyle.ForeColor = Color.Snow;
+                }
+               
             }
 
         }
