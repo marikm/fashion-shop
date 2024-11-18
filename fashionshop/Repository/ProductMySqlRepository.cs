@@ -64,19 +64,19 @@ namespace fashionshop.Repository
                         cmd.Parameters.AddWithValue("@barcode", barcode);
                         MySqlDataReader item = cmd.ExecuteReader();
 
-                        if(item.Read())
+                        if (item.Read())
                         {
                             string description = item["descricao"].ToString();
                             string category = item["categoria"].ToString();
                             string brand = item["marca"].ToString();
                             decimal price = Convert.ToDecimal(item["preco"]);
-                            
+
                             product = new Product(barcode, description, category, brand, price);
 
                         }
                         return product;
                     }
-                    
+
                 }
             }
             catch (Exception ex)
@@ -85,16 +85,39 @@ namespace fashionshop.Repository
             }
         }
 
-        //public void inactivate(int productId)
-        //{
+        public void ChangeStatus(string productId, int status)
+        {
+            try
+            {
+                using (MySqlConnection conection = con.getConnection())
+                {
+                    var query = @"UPDATE produtos SET ativo = @ativo WHERE id=@id";
 
-        //}
+                    using (MySqlCommand cmd = new MySqlCommand(query, conection))
+                    {
+                        if (status == 0)
+                        {
+                            cmd.Parameters.AddWithValue("@ativo", false);
+                        }
+                        else
+                        {
+                            cmd.Parameters.AddWithValue("@ativo", true);
+                        }
+                        cmd.Parameters.AddWithValue("@id", productId);
+
+                        cmd.ExecuteNonQuery();
+                    }
+                    con.CloseConnection(conection);
+                }
+            }
+            catch (Exception ex) { throw new Exception(ex.Message); }
+        }
         public void update(string productId, Product product)
         {
             try
             {
                 using (MySqlConnection conection = con.getConnection())
-                { 
+                {
                     var query = @"UPDATE produtos 
                                 SET codBarras = @codBarras, 
                                     descricao = @descricao, 
@@ -124,10 +147,42 @@ namespace fashionshop.Repository
                 throw new Exception("Failed to update product to the database: " + ex.Message);
             }
         }
-        //public Product findOne(string productId)
-        //{
+        public string[] findOneByBarcode(string barcode)
+        {
+            try
+            {
+                using (MySqlConnection conection = con.getConnection())
+                {
+                    string[] product = null;
+                    var query = "SELECT * FROM produtos WHERE codBarras = @barcode";
+                    using (MySqlCommand cmd = new MySqlCommand(query, conection))
+                    {
+                        cmd.Parameters.AddWithValue("@barcode", barcode);
+                        MySqlDataReader item = cmd.ExecuteReader();
 
-        //}
+                        while (item.Read())
+                        {
+                            product = new string[]
+                            {
+                                 item["codBarras"].ToString(),
+                                 item["descricao"].ToString(),
+                                 item["categoria"].ToString(),
+                                 item["marca"].ToString(),
+                                 item["preco"].ToString(),
+                                 item["ativo"].ToString(),
+                                 item["estoque"].ToString()
+                            };
+
+                        }
+                    }
+                    return product;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Failed to find in Read() method: " + ex.Message);
+            }
+        }
 
         public ArrayList findAll()
         {
@@ -141,7 +196,49 @@ namespace fashionshop.Repository
                     var query = "SELECT * FROM produtos";
                     using (MySqlCommand cmd = new MySqlCommand(query, conection))
                     {
-                        
+
+                        MySqlDataReader item = cmd.ExecuteReader();
+
+                        while (item.Read())
+                        {
+                            register = new string[]
+                            {
+                                item["id"].ToString(),
+                                item["codBarras"].ToString(),
+                                item["descricao"].ToString(),
+                                item["categoria"].ToString(),
+                                item["marca"].ToString(),
+                                item["preco"].ToString(),
+                                item["estoque"].ToString(),
+                                item["ativo"].ToString()
+                            };
+
+                            rows.Add(register);
+
+                        }
+                        return rows;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Failed to find in Read() method: " + ex.Message);
+            }
+        }
+
+        public ArrayList findAllActiveProducts()
+        {
+            try
+            {
+                ArrayList rows = new ArrayList();
+                string[] register;
+
+                using (MySqlConnection conection = con.getConnection())
+                {
+                    var query = "SELECT * FROM produtos WHERE ativo=1";
+                    using (MySqlCommand cmd = new MySqlCommand(query, conection))
+                    {
+
                         MySqlDataReader item = cmd.ExecuteReader();
 
                         while (item.Read())
@@ -169,12 +266,122 @@ namespace fashionshop.Repository
                 throw new Exception("Failed to find in Read() method: " + ex.Message);
             }
         }
-        //public List<Product> findByDescription(string description)
-        //{
 
-        //}
+        public ArrayList findByDescription(string description, int status)
+        {
+            try
+            {
+                ArrayList rows = new ArrayList();
+                string[] register;
 
 
-      
+                using (MySqlConnection conection = con.getConnection())
+                {
+                    var query = "SELECT * FROM produtos WHERE ativo=@status AND descricao LIKE CONCAT('%', @descricao, '%')";
+                    using (MySqlCommand cmd = new MySqlCommand(query, conection))
+                    {
+                        cmd.Parameters.AddWithValue("@descricao", description);
+                        cmd.Parameters.AddWithValue("@status", status);
+
+                        MySqlDataReader item = cmd.ExecuteReader();
+
+                        while (item.Read())
+                        {
+                            register = new string[]
+                            {
+                                item["id"].ToString(),
+                                item["codBarras"].ToString(),
+                                item["descricao"].ToString(),
+                                item["categoria"].ToString(),
+                                item["marca"].ToString(),
+                                item["preco"].ToString(),
+                                item["estoque"].ToString()
+                            };
+
+                            rows.Add(register);
+
+                        }
+                    }
+                    return rows;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Failed to find in Read() method: " + ex.Message);
+            }
+        }
+
+        public ArrayList findAllByDescription(string description)
+        {
+            try
+            {
+                ArrayList rows = new ArrayList();
+                string[] register;
+
+                using (MySqlConnection conection = con.getConnection())
+                {
+                    var query = "SELECT * FROM produtos WHERE descricao LIKE CONCAT('%', @descricao, '%')";
+                    using (MySqlCommand cmd = new MySqlCommand(query, conection))
+                    {
+                        cmd.Parameters.AddWithValue("@descricao", description);
+
+                        MySqlDataReader item = cmd.ExecuteReader();
+
+                        while (item.Read())
+                        {
+                            register = new string[]
+                            {
+                                item["id"].ToString(),
+                                item["codBarras"].ToString(),
+                                item["descricao"].ToString(),
+                                item["categoria"].ToString(),
+                                item["marca"].ToString(),
+                                item["preco"].ToString(),
+                                item["estoque"].ToString()
+                            };
+
+                            rows.Add(register);
+
+                        }
+                    }
+                    return rows;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Failed to find in Read() method: " + ex.Message);
+            }
+        }
+
+        public void updateStock(string barcode, int qnt)
+        {
+            try
+            {
+                using (MySqlConnection conection = con.getConnection())
+                {
+                    int dbStock = Convert.ToInt16(this.findOneByBarcode(barcode)[6]);
+                    int newStock = dbStock + qnt;
+
+                    var query = @"UPDATE produtos 
+                                SET estoque = @estoque 
+                                WHERE codBarras = @barcode";
+
+                    using (MySqlCommand cmd = new MySqlCommand(query, conection))
+                    {
+                        cmd.Parameters.AddWithValue("@codBarras", barcode);
+                        cmd.Parameters.AddWithValue("@estoque", Convert.ToString(newStock));
+
+                        cmd.ExecuteNonQuery();
+
+                    }
+                    con.CloseConnection(conection);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Failed to update product to the database: " + ex.Message);
+            }
+        }
+
     }
 }

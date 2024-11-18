@@ -43,7 +43,7 @@ namespace fashionshop.View
                 Product item = new(barCode, description, category, brand, price);
                 productController.RegisterItem(item);
                 MessageBox.Show(
-                    "Product saved in database", 
+                    "Produto Salvo no banco de dados",
                     "Information",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
@@ -55,6 +55,22 @@ namespace fashionshop.View
                     "Exception",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Warning);
+            }
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void RegisterProduct_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (MessageBox.Show("Tem certeza que deseja cancelar cadastro?",
+                    "Atenção",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question) == DialogResult.No)
+            {
+                e.Cancel = true;
             }
         }
     }

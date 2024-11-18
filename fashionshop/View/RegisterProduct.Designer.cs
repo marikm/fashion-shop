@@ -95,6 +95,7 @@
             button1.TabIndex = 7;
             button1.Text = "cancelar";
             button1.UseVisualStyleBackColor = true;
+            button1.Click += btnCancel_Click;
             // 
             // label6
             // 

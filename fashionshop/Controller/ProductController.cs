@@ -35,7 +35,7 @@ namespace fashionshop.Controller
         {
             try
             {
-                productService.EditProduct(idProduct,product);
+                productService.EditProduct(idProduct, product);
             }
             catch (Exception ex)
             {
@@ -46,6 +46,48 @@ namespace fashionshop.Controller
         public ArrayList listAllProducts()
         {
             return productService.GetAllProducts();
+        }
+
+        public ArrayList listActiveProducts()
+        {
+            return productService.GetActiveProducts();
+        }
+
+        public ArrayList listInactiveProducts()
+        {
+            return productService.GetInactiveProducts();
+        }
+
+        public void ChangeStatus(string id, int status)
+        {
+            try
+            {
+                productService.ChangeStatus(id, status);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public string[] GetOneByBarcode(string barcode)
+        {
+            return productService.GetProductByBarcode(barcode);
+        }
+
+        public ArrayList GetByDescription(string description, int status)
+        {
+            return this.productService.GetByDescription(description, status);
+        }
+
+        public ArrayList GetAllByDescription(string description)
+        {
+            return this.productService.GetAllProductsByDescription(description);
+        }
+
+        public string[] GetByBarcode(string barcode)
+        {
+            return productService.GetOneByBarcode(barcode);
         }
     }
 }

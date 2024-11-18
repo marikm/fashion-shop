@@ -20,7 +20,8 @@ namespace fashionshop
             ApplicationConfiguration.Initialize();
             //Application.Run(new Login());
             //Application.Run(new RegisterProduct());
-            Application.Run(new ProductsRegistered());
+            //Application.Run(new ProductsRegistered());
+            Application.Run(new PointOfSale());
 
 
 

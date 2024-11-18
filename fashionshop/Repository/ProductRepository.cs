@@ -12,11 +12,14 @@ namespace fashionshop.Repository
     public interface ProductRepository
     {
         void save(Product product);
-        //void inactivate(int productId);
+        void updateStock(string barcode, int qnt);
+        public void ChangeStatus(string productId, int status);
         void update(string productId, Product product);
-        //Product findOne(string  productId);
+        string[] findOneByBarcode(string barcode);
         Product findByBarcode(string barcode);
         ArrayList findAll();
-        //List<Product> findByDescription(string description);
+        ArrayList findAllActiveProducts();
+        ArrayList findByDescription(string description, int status);
+        ArrayList findAllByDescription(string description);
     }
 }

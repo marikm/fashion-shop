@@ -35,6 +35,8 @@
             btnDisable = new Button();
             btnRefresh = new Button();
             panel1 = new Panel();
+            cmbActive = new ComboBox();
+            label4 = new Label();
             txtSearch = new TextBox();
             label3 = new Label();
             dgvProducts = new DataGridView();
@@ -61,10 +63,10 @@
             label2.Dock = DockStyle.Bottom;
             label2.Font = new Font("Segoe UI", 15F);
             label2.ForeColor = SystemColors.ButtonHighlight;
-            label2.Location = new Point(0, 505);
+            label2.Location = new Point(0, 535);
             label2.Name = "label2";
             label2.Padding = new Padding(20, 0, 0, 0);
-            label2.Size = new Size(947, 49);
+            label2.Size = new Size(947, 48);
             label2.TabIndex = 12;
             label2.Text = "Pesquisa";
             label2.TextAlign = ContentAlignment.MiddleLeft;
@@ -76,7 +78,7 @@
             btnRegister.FlatStyle = FlatStyle.Flat;
             btnRegister.Font = new Font("Segoe UI", 15F);
             btnRegister.ForeColor = SystemColors.ButtonHighlight;
-            btnRegister.Location = new Point(3, 62);
+            btnRegister.Location = new Point(3, 93);
             btnRegister.Name = "btnRegister";
             btnRegister.Size = new Size(122, 60);
             btnRegister.TabIndex = 1;
@@ -91,7 +93,7 @@
             btnEdit.FlatStyle = FlatStyle.Flat;
             btnEdit.Font = new Font("Segoe UI", 15F);
             btnEdit.ForeColor = SystemColors.ButtonHighlight;
-            btnEdit.Location = new Point(3, 128);
+            btnEdit.Location = new Point(3, 159);
             btnEdit.Name = "btnEdit";
             btnEdit.Size = new Size(122, 60);
             btnEdit.TabIndex = 2;
@@ -106,12 +108,13 @@
             btnDisable.FlatStyle = FlatStyle.Flat;
             btnDisable.Font = new Font("Segoe UI", 15F);
             btnDisable.ForeColor = SystemColors.ButtonHighlight;
-            btnDisable.Location = new Point(3, 194);
+            btnDisable.Location = new Point(3, 225);
             btnDisable.Name = "btnDisable";
             btnDisable.Size = new Size(122, 60);
             btnDisable.TabIndex = 3;
             btnDisable.Text = "Inativar";
             btnDisable.UseVisualStyleBackColor = false;
+            btnDisable.Click += btnDisable_Click;
             // 
             // btnRefresh
             // 
@@ -120,7 +123,7 @@
             btnRefresh.FlatStyle = FlatStyle.Flat;
             btnRefresh.Font = new Font("Segoe UI", 15F);
             btnRefresh.ForeColor = SystemColors.ButtonHighlight;
-            btnRefresh.Location = new Point(3, 260);
+            btnRefresh.Location = new Point(3, 291);
             btnRefresh.Name = "btnRefresh";
             btnRefresh.Size = new Size(122, 60);
             btnRefresh.TabIndex = 4;
@@ -133,21 +136,46 @@
             panel1.BackColor = Color.LightCoral;
             panel1.BackgroundImageLayout = ImageLayout.None;
             panel1.BorderStyle = BorderStyle.FixedSingle;
+            panel1.Controls.Add(cmbActive);
+            panel1.Controls.Add(label4);
             panel1.Controls.Add(btnRefresh);
             panel1.Controls.Add(btnDisable);
             panel1.Controls.Add(btnEdit);
             panel1.Controls.Add(btnRegister);
             panel1.Location = new Point(0, 73);
             panel1.Name = "panel1";
-            panel1.Size = new Size(130, 443);
+            panel1.Size = new Size(130, 469);
             panel1.TabIndex = 11;
+            // 
+            // cmbActive
+            // 
+            cmbActive.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbActive.Font = new Font("Segoe UI", 15F);
+            cmbActive.FormattingEnabled = true;
+            cmbActive.Location = new Point(4, 22);
+            cmbActive.Name = "cmbActive";
+            cmbActive.Size = new Size(121, 36);
+            cmbActive.TabIndex = 6;
+            cmbActive.SelectedValueChanged += cmbActive_SelectedValueChanged;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            label4.ForeColor = Color.GhostWhite;
+            label4.Location = new Point(-1, -2);
+            label4.Name = "label4";
+            label4.Size = new Size(130, 21);
+            label4.TabIndex = 5;
+            label4.Text = "Filtrar por itens:";
             // 
             // txtSearch
             // 
-            txtSearch.Location = new Point(127, 522);
+            txtSearch.Location = new Point(127, 548);
             txtSearch.Name = "txtSearch";
             txtSearch.Size = new Size(808, 23);
             txtSearch.TabIndex = 5;
+            txtSearch.TextChanged += txtSearch_TextChanged;
             // 
             // label3
             // 
@@ -155,7 +183,7 @@
             label3.Dock = DockStyle.Right;
             label3.Location = new Point(931, 77);
             label3.Name = "label3";
-            label3.Size = new Size(16, 428);
+            label3.Size = new Size(16, 458);
             label3.TabIndex = 13;
             // 
             // dgvProducts
@@ -170,14 +198,14 @@
             dgvProducts.Name = "dgvProducts";
             dgvProducts.ScrollBars = ScrollBars.Vertical;
             dgvProducts.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvProducts.Size = new Size(808, 428);
+            dgvProducts.Size = new Size(808, 461);
             dgvProducts.TabIndex = 14;
             // 
             // ProductsRegistered
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(947, 554);
+            ClientSize = new Size(947, 583);
             Controls.Add(dgvProducts);
             Controls.Add(label3);
             Controls.Add(txtSearch);
@@ -188,6 +216,7 @@
             Text = "ProductsRegistered";
             Load += ProductsRegistered_Load;
             panel1.ResumeLayout(false);
+            panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dgvProducts).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -204,5 +233,7 @@
         private TextBox txtSearch;
         private Label label3;
         private DataGridView dgvProducts;
+        private Label label4;
+        private ComboBox cmbActive;
     }
 }
